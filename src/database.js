@@ -3,7 +3,9 @@ import {Pool} from 'pg';
 function connectDB(){
     if(process.env.DATABASE_URL){
         console.log('ok');
-        const pool = new Pool(process.env.DATABASE_URL);
+        const pool = new Pool({
+            connectionString:process.env.DATABASE_URL
+        });
         return pool;    
     }else{
         const pool = new Pool({
