@@ -1,0 +1,8 @@
+{
+    "ignore":["node_modules/*","client/*"],
+    "exec":"babel-node src/index.js",
+    "watch": [
+        "src"
+    ],
+    "ext": "js"
+}
