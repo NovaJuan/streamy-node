@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=production npm run server:build && npm run client:build && node dist/index.js",
     "server:build": "npm run server:clean && babel src --out-dir dist",
     "server:dev": "cross-env NODE_ENV=development nodemon",
-    "server:clean": "rimraf dist/*",
+    "server:clean": "rimraf dist",
     "client:build": "npm run client:clean && webpack --mode production",
     "client:dev": "npm run client:clean && webpack --mode development --watch",
     "client:clean": "rimraf public/*"
