@@ -63,7 +63,7 @@ export default function Songs(props){
     return(
         <div className='container'>
             <div className='row'>
-                <div className='col-md-6 offset-md-3'>
+                <div className='col-lg-6 offset-lg-3'>
                     <div className='Songs card bg-dark text-white my-4'>
                         <div className='card-body'>
                             {content}

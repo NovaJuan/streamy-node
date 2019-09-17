@@ -33,6 +33,10 @@ export default function AddSong(props){
             return
         }
 
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Uploading...';
+
         const newSong = new FormData();
         newSong.append('title',state.title);
         newSong.append('author',state.author);
@@ -46,12 +50,16 @@ export default function AddSong(props){
                     ...state,
                     error:res.data.message
                 });
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Add Song';
                 return
             }
 
             props.history.push('/');
         }).catch(err => {
             console.log(err);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Add Song';
             setState({
                 ...state,
                 error:'Something went wrong...'
@@ -81,7 +89,7 @@ export default function AddSong(props){
                                     <label>Song:</label>
                                     <input type='file' className='form-control-file' id='song' multiple={false} accept='audio/mpeg' required placeholder='Songs Author' onChange={handleFiles} />
                                 </div>
-                                <button type='submit' className='btn btn-success btn-block'>Add Song</button>
+                                <button type='submit' id='submit-btn' className='btn btn-success btn-block'>Add Song</button>
                             </form>
                         </div>
                     </div>

@@ -55,9 +55,15 @@ export default function EditSong(props){
             return
         }
 
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Updating...';
+
         axios.put(`/api/songs/${props.match.params.id}`,state,)
             .then(res => {
                 if(res.data.error){
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Edit Song';
                     setState({
                         ...state,
                         error:res.data.message
@@ -67,6 +73,8 @@ export default function EditSong(props){
                 props.history.push('/');
             }).catch(err => {
                 console.log(err);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Edit Song';
                 setState({
                     ...state,
                     error:'Something went wrong...'
@@ -94,7 +102,7 @@ export default function EditSong(props){
                                     <label htmlFor='author'>Author:</label>
                                     <input type='text' className='form-control' id='author' required placeholder='Songs author' value={state.author} onChange={handleText} />
                                 </div>
-                                <button type='submit' className='btn btn-success btn-block'>Edit Song</button>
+                                <button id='submit-btn' type='submit' className='btn btn-success btn-block'>Edit Song</button>
                             </form>
                         </div>
                     </div>

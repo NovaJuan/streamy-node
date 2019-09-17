@@ -21,7 +21,9 @@ var _index = _interopRequireDefault(require("./routes/index"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-_dotenv["default"].config();
+if (process.env.NODE_ENV === 'development') {
+  _dotenv["default"].config();
+}
 
 var app = (0, _express["default"])(); //Settings
 

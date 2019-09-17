@@ -10,7 +10,7 @@ exports.deleteSong = deleteSong;
 exports.updatedSong = updatedSong;
 exports.getSongFile = getSongFile;
 
-var _database = _interopRequireDefault(require("../libs/database"));
+var _database = _interopRequireDefault(require("../database"));
 
 var _fsExtra = _interopRequireDefault(require("fs-extra"));
 
@@ -41,7 +41,7 @@ function _getSongs() {
 
           case 3:
             conn = _context.sent;
-            SQL = 'SELECT * FROM song';
+            SQL = 'SELECT * FROM song ORDER BY id ASC';
             _context.next = 7;
             return conn.query(SQL);
 
@@ -117,9 +117,12 @@ function _getOneSong() {
 
           case 8:
             song = _context2.sent.rows[0];
+            _context2.next = 11;
+            return conn.end();
 
+          case 11:
             if (song) {
-              _context2.next = 11;
+              _context2.next = 13;
               break;
             }
 
@@ -129,17 +132,17 @@ function _getOneSong() {
               noSong: true
             }));
 
-          case 11:
+          case 13:
             res.json({
               error: false,
               song: song,
               noSong: false
             });
-            _context2.next = 18;
+            _context2.next = 20;
             break;
 
-          case 14:
-            _context2.prev = 14;
+          case 16:
+            _context2.prev = 16;
             _context2.t0 = _context2["catch"](1);
             console.log(_context2.t0);
             return _context2.abrupt("return", res.json({
@@ -148,12 +151,12 @@ function _getOneSong() {
               noSong: false
             }));
 
-          case 18:
+          case 20:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[1, 14]]);
+    }, _callee2, null, [[1, 16]]);
   }));
   return _getOneSong.apply(this, arguments);
 }
