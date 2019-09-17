@@ -9,7 +9,6 @@ var _pg = require("pg");
 
 function connectDB() {
   if (process.env.DATABASE_URL) {
-    console.log('ok');
     var pool = new _pg.Pool({
       connectionString: process.env.DATABASE_URL
     });
