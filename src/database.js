@@ -1,21 +1,15 @@
-import {Pool} from 'pg';
+import { open, Database } from 'sqlite';
+import sqlite3 from 'sqlite3';
+import path from 'path';
 
-function connectDB(){
-    if(process.env.DATABASE_URL){
-        const pool = new Pool({
-            connectionString:process.env.DATABASE_URL
-        });
-        return pool;    
-    }else{
-        const pool = new Pool({
-            host:process.env.PG_HOST,
-            user:process.env.PG_USER,
-            password:process.env.PG_PASSWORD,
-            port:process.env.PG_PORT,
-            database:process.env.PG_DATABASE
-        });
-        return pool;
-    }
+sqlite3.verbose();
+
+async function connectDB() {
+	const db = await open(path.join(__dirname, '../database.sql'), {
+		driver: sqlite3.Database,
+	});
+
+	return db;
 }
 
 export default connectDB;
