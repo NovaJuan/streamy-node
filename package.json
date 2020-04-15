@@ -10,7 +10,8 @@
     "server:clean": "rimraf dist",
     "client:build": "npm run client:clean && mkdir public &&  webpack --mode production",
     "client:dev": "npm run client:clean && webpack --mode development --watch",
-    "client:clean": "rimraf public"
+    "client:clean": "rimraf public",
+    "build": "babel src --out-dir dist && mkdir public &&  webpack --mode production"
   },
   "keywords": [],
   "author": "",
