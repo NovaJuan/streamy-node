@@ -1,5 +1,5 @@
 {
-  "name": "StremyNode",
+  "name": "streamy-node",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,10 +8,10 @@
     "server:build": "npm run server:clean && babel src --out-dir dist",
     "server:dev": "cross-env NODE_ENV=development nodemon",
     "server:clean": "rimraf dist",
-    "client:build": "npm run client:clean && mkdir public &&  webpack --mode production",
+    "client:build": "webpack --mode production",
     "client:dev": "npm run client:clean && webpack --mode development --watch",
     "client:clean": "rimraf public",
-    "build": "babel src --out-dir dist && mkdir public &&  webpack --mode production"
+    "build": "babel src --out-dir dist &&  webpack --mode production"
   },
   "keywords": [],
   "author": "",
