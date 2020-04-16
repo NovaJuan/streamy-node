@@ -1,20 +1,18 @@
-import React,{useState,createContext} from 'react';
-import axios from 'axios';
+import React, { useState, createContext } from 'react';
 
 export const SongsContext = createContext();
 
-const SongsContextProvider = (props) =>{
-    const [songs,setSongs] = useState({
-        songs:null,
-        noSongs:false
-    });
+const SongsContextProvider = (props) => {
+	const [playlist, setSongs] = useState({
+		songs: null,
+		noSongs: false,
+	});
 
-
-    return(
-        <SongsContext.Provider value={{songs,setSongs}}>
-            {props.children}
-        </SongsContext.Provider>
-    )
-}
+	return (
+		<SongsContext.Provider value={{ playlist, setSongs }}>
+			{props.children}
+		</SongsContext.Provider>
+	);
+};
 
 export default SongsContextProvider;
